@@ -16,20 +16,6 @@ public class Main {
         phonebook.put("Дмитриев Дмитрий", 34334);
         System.out.println(phonebook);
 
-        Product banana = new Product("банан", 7, 1);
-        Product apple = new Product("яблоко", 4, 1);
-        Product pears = new Product("груша", 6, 2);
-        Product peach = new Product("персик", 5, 3);
-        Product apricot = new Product("абрикос", 6, 3);
-        Product strawberry = new Product("клубника", 5, 4);
-
-        Recipe soup = new Recipe(List.of(banana, apple, pears), 3, "суп");
-        Recipe salad = new Recipe(List.of(apple, pears, apricot), 2, "салат");
-
-        products.put(banana, 7);
-        products.put(apple, 4);
-        products.put(pears, 6);
-        System.out.println(products);
 
 
         colleagues.put("Мария", 26);
@@ -61,25 +47,12 @@ public class Main {
                 colleagues.put(key, value);
             }
             if (colleagues.containsKey(key) && !colleagues.containsValue(value)){
-                colleagues.replace(key, value, value+1);
+
             } else {
                 colleagues.put(key, value);
             }
             break;
         }
     }
-
-    public static void addProduct(Product product, Integer amount){
-        products.put(product, amount);
-    }
-
-    public static Double recipeSum (HashMap<Product, Integer> products){
-        double sum = 0;
-        for (Map.Entry<Product, Integer> entry : products.entrySet()){
-            sum += entry.getKey().getCost()* entry.getValue();
-        }
-        return sum;
-    }
-
 
 }

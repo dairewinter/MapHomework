@@ -1,25 +1,34 @@
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Recipe {
-    private List<Product> products;
-    private double totalCost;
     private String name;
+    private Map<Product, Integer> products = new HashMap<>();
 
-    public Recipe(List<Product> products, double totalCost, String name) {
-        this.products = products;
-        this.totalCost = totalCost;
+
+    public Recipe(String name) {
         this.name = name;
     }
 
-    public double getTotalCost(Product product) {
-        return product.getAmount() * product.getCost();
+    public void addProduct(Product product, int amount) {
+        if(this.products.containsKey(product)){
+            this.products.put(product, this.products.get(product)+ amount);
+        } else {
+            this.products.put(product, amount);
+        }
+    }
+
+    public double getTotalCost() {
+        double sum = 0;
+        for (Map.Entry<Product, Integer> product : this.products.entrySet()){
+            sum += product.getKey().getCost() * product.getValue();
+        }
+        return sum;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Product> getProducts(){
-        return products;
-    }
 }
